@@ -5,9 +5,9 @@ function Navbar() {
     <nav className="navbar">
       <h1>DEV@Deakin</h1>
       <div className="nav-links">
-        <a href="#home">Home</a>
+        <Link to="/">Home</Link>
         <a href="#questions">Questions</a>
-        <a href="#articles">Articles</a>
+        <Link to="/Article">Article</Link>
         <a href="#tutorials">Tutorials</a>
       </div>
       <div className="nav-right">
@@ -15,6 +15,8 @@ function Navbar() {
       
 <Link to="/login">Log in</Link>
 <Link to="/signup">Sign up</Link>
+
+
 
       </div>
     </nav>);
