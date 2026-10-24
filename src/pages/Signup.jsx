@@ -17,30 +17,24 @@ function Signup() {
   const handleSignup = async (e) => {
     e.preventDefault();
     setError("");
-
     if (password !== confirmPassword) {
       setError("Passwords do not match.");
       return;
     }
-
     try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-
       await updateProfile(userCredential.user, { displayName: fullName });
-
       await setDoc(doc(db, "users", userCredential.user.uid), {
         fullName: fullName,
         email: email,
         createdAt: serverTimestamp()
       });
-
       await auth.signOut();
       navigate("/login");
     } catch (err) {
       setError(err.message);
     }
   };
-
   return (
     <div className="login-container">
       <form className="login-form" onSubmit={handleSignup}>
@@ -52,7 +46,8 @@ function Signup() {
         <label htmlFor="signupPassword">Password</label>
         <input type="password" id="signupPassword" placeholder="Create a password" value={password} onChange={(e) => setPassword(e.target.value)} required />
         <label htmlFor="confirmPassword">Confirm Password</label>
-        <input type="password" id="confirmPassword" placeholder="Confirm your password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
+         
+      <input type="password" id="confirmPassword" placeholder="Confirm your password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
         {error && <p>{error}</p>}
         <button type="submit">Sign Up</button>
         <p>Already have an account? <Link to="/login">Log in</Link></p>
